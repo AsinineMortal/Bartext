@@ -1,5 +1,3 @@
-var inventory = ["Ale", "Mead"];
-
 var goldBalance = 30;
 
 var hops = {name: "hops", stock: 0, value: 1.00};
@@ -9,10 +7,12 @@ var honey = {name: "honey", stock: 0, value: 2.00};
 var ale = {name: "ale", stock: 0, price: 5.00, ingredients: [yeast, hops]};
 var mead = {name: "mead", stock: 0, price: 6.00, ingredients: [yeast, honey]};
 
-var customer1 = {name: "Ingrid", order: "Ale"};
-var customer2 = {name: "Hans", order: "Mead"};
-var customer3 = {name: "Jenxi", order: "None"};
-var customer4 = {name: "Elias", order: "None"};
+var inventory = [ale, mead];
+
+var customer1 = {id: "customer1", name: "Ingrid", order: ale};
+var customer2 = {id: "customer2", name: "Hans", order: mead};
+var customer3 = {id: "customer3", name: "Jenxi", order: ale};
+var customer4 = {id: "customer4", name: "Elias", order: mead};
 
 // this runs the displayVars function when page is loaded
 document.body.onload = function() {displayVarsToHTML()};
@@ -22,10 +22,10 @@ function displayVarsToHTML() {
     document.getElementById("customer2Name").innerHTML = customer2.name;
     document.getElementById("customer3Name").innerHTML = customer3.name;
     document.getElementById("customer4Name").innerHTML = customer4.name;
-	document.getElementById("customer1Order").innerHTML = customer1.order;
-    document.getElementById("customer2Order").innerHTML = customer2.order;
-    document.getElementById("customer3Order").innerHTML = customer3.order;
-    document.getElementById("customer4Order").innerHTML = customer4.order;
+	document.getElementById("customer1Order").innerHTML = customer1.order.name;
+    document.getElementById("customer2Order").innerHTML = customer2.order.name;
+    document.getElementById("customer3Order").innerHTML = customer3.order.name;
+    document.getElementById("customer4Order").innerHTML = customer4.order.name;
  	document.getElementById("hopsValue").innerHTML = Number(hops.value).toFixed(2);
  	document.getElementById("yeastValue").innerHTML = Number(yeast.value).toFixed(2);
  	document.getElementById("honeyValue").innerHTML = Number(honey.value).toFixed(2); 
@@ -48,13 +48,7 @@ function displayVarsToHTML() {
 			inventoryText += " ";
 			}
 		}
-		
-	}
-		
-	document.getElementById("inventory").innerHTML = inventoryText;
-	
-	
-	
+	} document.getElementById("inventory").innerHTML = inventoryText;
 }	
 
 // List of Functions To Make
@@ -85,10 +79,21 @@ function craftDrink(drink) {
 	document.getElementById(drink.ingredients[1].name + "Stock").innerHTML = drink.ingredients[1].stock;
 }
 
-function serveCustomer(drink, customer) {
-	if (drink == customer.order) {
-		drink.stock--;
-		customer.order = null;
+document.getElementById("customer1Button").onclick = function() {serveCustomer(inventory, customer1)};
+
+function serveCustomer(inventory, customer) {
+	var drink;
+	if (inventory[0] == customer.order) {
+		inventory[0].stock--;
+		customer.order = "Served";
+		drink = inventory[0];
+	} else if (inventory[1] == customer.order) {
+		inventory[1].stock--;
+		customer.order = "Served";
+		drink = inventory[1];
 	}
+	
+	document.getElementById(drink.name + "Stock").innerHTML = drink.stock;
+	document.getElementById(customer.id + "Order").innerHTML = customer.order;
 	
 }
