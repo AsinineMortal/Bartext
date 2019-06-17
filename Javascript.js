@@ -6,8 +6,8 @@ var hops = {name: "hops", stock: 0, value: 1.00};
 var yeast = {name: "yeast", stock: 0, value: 1.50};
 var honey = {name: "honey", stock: 0, value: 2.00};
 
-var ale = {stock: 0, price: 5.00};
-var mead = {stock: 0, price: 6.00};
+var ale = {name: "ale", stock: 0, price: 5.00, ingredients: ["yeast", "hops"]};
+var mead = {name: "mead", stock: 0, price: 6.00};
 
 var customer1order = "Ale";
 var customer2order = "Mead";
@@ -35,7 +35,7 @@ function displayVarsToHTML() {
 }	
 
 // List of Functions To Make
-// buy stock
+// buy stock DONE
 // put drink in inventory
 // serve drink to customer
 
@@ -49,3 +49,12 @@ function buyStock(ingredient) {
 	document.getElementById(ingredient.name + "Stock").innerHTML = ingredient.stock;
 	document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
 }
+
+	document.getElementById("ale").onclick = function() {addToInventory(ale)};
+	document.getElementById("mead").onclick = function() {addToInventory(mead)};
+
+function addToInventory(drink) {
+	drink.stock++;
+	document.getElementById(drink.name + "Stock").innerHTML = drink.stock;
+}
+
