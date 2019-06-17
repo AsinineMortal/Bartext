@@ -43,9 +43,9 @@
 		Click the ingredient to re-order.
 	</div>
 
-	<button id="hops">Hops ($0.00)</button>
-	<button id="yeast">Yeast ($0.00)</button>
-	<button id="honey">Honey ($0.00)</button>
+	<button id="hops">Hops ($<span id="hopsValue"></span>)</button>
+	<button id="yeast">Yeast ($<span id="yeastValue"></span>)</button>
+	<button id="honey">Honey ($<span id="honeyValue"></span>)</button>
 
 	</br></br>
 
@@ -53,8 +53,8 @@
 		Click the drink to put one in your hand.
 	</div>
 
-	<button id="ale">Ale (# in stock)</button>
-	<button id="mead">Mead (# in stock)</button>
+	<button id="ale">Ale (<span id="aleStock"></span> in stock)</button>
+	<button id="mead">Mead (<span id="meadStock"></span> in stock)</button>
 		</div>
 		<div class="border">
 			<h3>Front of the Bar</h3>
@@ -79,14 +79,13 @@
 
  		<div class="border">
 			<h4>Inventory</h4>
-				Item 1
-				Item 2
+				<span id="inventory"></span>
 
 			<h4>Storage</h4>
-				<div>Gold: $0.00</div>
-				<div>Hops: # </div>
-				<div>Yeast: #</div>
-				<div>Honey: #</div>
+				<div>Gold: $<span id="goldBalance"></span></div>
+				<div>Hops: <span id="hopsStock"></span></div>
+				<div>Yeast:<span id="yeastStock"></span></div>
+				<div>Honey:<span id="honeyStock"></span></div>
 
 			<h4>Recipes</h4>
 				<div>Ale = Hops + Yeast</div>
