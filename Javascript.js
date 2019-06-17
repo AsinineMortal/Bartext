@@ -80,6 +80,9 @@ function craftDrink(drink) {
 }
 
 document.getElementById("customer1Button").onclick = function() {serveCustomer(inventory, customer1)};
+document.getElementById("customer2Button").onclick = function() {serveCustomer(inventory, customer2)};
+document.getElementById("customer3Button").onclick = function() {serveCustomer(inventory, customer3)};
+document.getElementById("customer4Button").onclick = function() {serveCustomer(inventory, customer4)};
 
 function serveCustomer(inventory, customer) {
 	var drink;
