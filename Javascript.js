@@ -35,7 +35,26 @@ function displayVarsToHTML() {
     document.getElementById("yeastStock").innerHTML = yeast.stock;
     document.getElementById("honeyStock").innerHTML = honey.stock;
     document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
-    document.getElementById("inventory").innerHTML = inventory.toString();
+    
+	var inventoryItems = Object.values(inventory);
+	var inventoryText = "";
+	var inventorySize = Object.keys(inventory).length;
+	
+	for (var value of inventoryItems) {
+		if (value != "inventory") {
+			inventoryText += value;
+			
+			if (inventory.rightHand != "" ) {
+			inventoryText += " ";
+			}
+		}
+		
+	}
+		
+	document.getElementById("inventory").innerHTML = inventoryText;
+	
+	
+	
 }	
 
 // List of Functions To Make
