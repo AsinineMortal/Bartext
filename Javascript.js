@@ -1,9 +1,9 @@
 // FUNCTIONALITY ---------------------------------------
-// Customers generate new orders over time
+// Customers generate new orders over time DONE ***
 // What to do when you try and serve a customer that has no order
 // You cannot go in negative Gold Balance
 // You cannot go in negative stock
-// You earn money from customer sales
+// You earn money from customer sales DONE ***
 
 // AESTHETIC -------------------------------------------
 // Update CSS styles
@@ -97,19 +97,28 @@ document.getElementById("customer3Button").onclick = function() {serveCustomer(i
 document.getElementById("customer4Button").onclick = function() {serveCustomer(inventory, customer4)};
 
 function serveCustomer(inventory, customer) {
+	// drink gets set when the function figures out which drink is being served
 	var drink;
+	
+	// if the first drink in the inventory is the customers order, proceed
 	if (inventory[0] == customer.order) {
 		inventory[0].stock--;
 		customer.order = "Served";
 		drink = inventory[0];
+		goldBalance += drink.price;
+		
+		// if not, try the second drink in the inventory
 	} else if (inventory[1] == customer.order) {
 		inventory[1].stock--;
 		customer.order = "Served";
 		drink = inventory[1];
+		goldBalance += drink.price;
 	}
 	document.getElementById(drink.name + "Stock").innerHTML = drink.stock;
 	document.getElementById(customer.id + "Order").innerHTML = customer.order;
+	document.getElementById("goldBalance").innerHTML = goldBalance;
 	
+	// triggers a new order after three seconds
 	setTimeout(generateNewOrder, 3000, customer);
 }
 
@@ -119,3 +128,5 @@ function generateNewOrder(customer) {
 		
 		document.getElementById(customer.id + "Order").innerHTML = customer.order.name;
 	}
+	
+	
