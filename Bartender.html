@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Bartender</title>
 
+	<script src="Javascript.js"></script>
+
 	<style>
 		body {font-family: Times New Roman;}
 		button {font-family: Times New Roman;font-size: 1em;}
@@ -30,7 +32,14 @@
 			<div>Hops: # </div>
 			<div>Yeast: #</div>
 			<div>Honey: #</div>
+
+		<h4>Recipes</h4>
+			<div>Ale = Hops + Yeast</div>
+			<div>Mead = Honey + Yeast</div>
+
 	</div>
+	
+	</br>
 
 	<h3>Behind the Bar</h3>
 
@@ -38,37 +47,35 @@
 		Click the ingredient to re-order.
 	</div>
 
-	</br>
-
-	<button>Hops ($0.00)</button>
-	<button>Yeast ($0.00)</button>
-	<button>Honey ($0.00)</button>
+	<button id="hops">Hops ($0.00)</button>
+	<button id="yeast">Yeast ($0.00)</button>
+	<button id="honey">Honey ($0.00)</button>
 
 	</br></br>
 
-	<div class="subtitle">Click the drink to put one in your hand.</div>
+	<div class="subtitle">
+		Click the drink to put one in your hand.
+	</div>
 
-	</br>
-
-	<button>Ale (# in stock)</button>
-	<button>Mead (# in stock)</button>
-
+	<button id="ale">Ale (# in stock)</button>
+	<button id="mead">Mead (# in stock)</button>
+	
 </br></br>
 <h3>Front of the Bar</h3>
 <div class="subtitle">Click the customer to serve them.</div>
 	<h4>Table 1</h4>
-	<button>
+	<button id="customer1">
 		<span class="customer1">&#x25CF;</span> Customer 1 (Current Order: )
 	</button>
-	<button>
+	<button id="customer2">
 		<span class="customer2">&#x25CF;</span> Customer 2 (Current Order: )
 	</button></br>
 
 	<h4>Table 2</h4>
-	<button>
+	<button id="customer3">
 		<span class="customer3">&#x25CF;</span> Customer 3 (Current Order: )
 	</button>
-	<button>
+	<button id="customer4">
 		<span class="customer4">&#x25CF;</span> Customer 4 (Current Order: )
 	</button>
 
