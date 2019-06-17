@@ -9,19 +9,23 @@ var honey = {name: "honey", stock: 0, value: 2.00};
 var ale = {name: "ale", stock: 0, price: 5.00, ingredients: [yeast, hops]};
 var mead = {name: "mead", stock: 0, price: 6.00, ingredients: [yeast, honey]};
 
-var customer1order = "Ale";
-var customer2order = "Mead";
-var customer3order = "None";
-var customer4order = "None";
+var customer1 = {name: "Ingrid", order: "Ale"};
+var customer2 = {name: "Hans", order: "Mead"};
+var customer3 = {name: "Jenxi", order: "None"};
+var customer4 = {name: "Elias", order: "None"};
 
 // this runs the displayVars function when page is loaded
 document.body.onload = function() {displayVarsToHTML()};
 
 function displayVarsToHTML() {
-    document.getElementById("customer1order").innerHTML = customer1order;
-    document.getElementById("customer2order").innerHTML = customer2order;
-    document.getElementById("customer3order").innerHTML = customer3order;
-    document.getElementById("customer4order").innerHTML = customer4order;
+    document.getElementById("customer1Name").innerHTML = customer1.name;
+    document.getElementById("customer2Name").innerHTML = customer2.name;
+    document.getElementById("customer3Name").innerHTML = customer3.name;
+    document.getElementById("customer4Name").innerHTML = customer4.name;
+	document.getElementById("customer1Order").innerHTML = customer1.order;
+    document.getElementById("customer2Order").innerHTML = customer2.order;
+    document.getElementById("customer3Order").innerHTML = customer3.order;
+    document.getElementById("customer4Order").innerHTML = customer4.order;
  	document.getElementById("hopsValue").innerHTML = Number(hops.value).toFixed(2);
  	document.getElementById("yeastValue").innerHTML = Number(yeast.value).toFixed(2);
  	document.getElementById("honeyValue").innerHTML = Number(honey.value).toFixed(2); 
@@ -50,14 +54,22 @@ function buyStock(ingredient) {
 	document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
 }
 
-	document.getElementById("ale").onclick = function() {addToInventory(ale)};
-	document.getElementById("mead").onclick = function() {addToInventory(mead)};
+	document.getElementById("ale").onclick = function() {craftDrink(ale)};
+	document.getElementById("mead").onclick = function() {craftDrink(mead)};
 
-function addToInventory(drink) {
+function craftDrink(drink) {
 	drink.stock++;
 	drink.ingredients[0].stock--;
 	drink.ingredients[1].stock--;
 	document.getElementById(drink.name + "Stock").innerHTML = drink.stock;
 	document.getElementById(drink.ingredients[0].name + "Stock").innerHTML = drink.ingredients[0].stock;
 	document.getElementById(drink.ingredients[1].name + "Stock").innerHTML = drink.ingredients[1].stock;
+}
+
+function serveCustomer(drink, customer) {
+	if (drink == customer.order) {
+		drink.stock--;
+		customer.order = null;
+	}
+	
 }

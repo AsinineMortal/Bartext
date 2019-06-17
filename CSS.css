@@ -1,9 +1,45 @@
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+body {
+	font-family: Times New Roman;
+	}
 
+.border {
+	border-style: solid; border-width: 1px; padding-left: 25px; padding-bottom: 25px;
+	}
+	
+button {
+	font-family: Times New Roman;font-size: 1em;
+	}
+	
+.redDot {
+	color: red;
+	}
+	
+.greenDot {
+	color: green;
+	}
+	
+.yellowDot {
+	color: yellow;
+	}
+	
+.blueDot {
+	color: blue;
+	}
+	
+.flex-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	}
+	
+footer {
+	padding-top: 2em; padding-bottom: 2em; text-align: center;
+	}
+	
+.subtitle {
+	font-style: italic;
+	}
+	
 .underlined {
 	text-decoration: underline;
-}
+	}
