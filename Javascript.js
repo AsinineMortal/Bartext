@@ -2,19 +2,12 @@ var inventory = ["Ale", "Mead"];
 
 var goldBalance = 30;
 
-var hopsStock = 0;
-var yeastStock = 0;
-var honeyStock = 0;
+var hops = {name: "hops", stock: 0, value: 1.00};
+var yeast = {name: "yeast", stock: 0, value: 1.50};
+var honey = {name: "honey", stock: 0, value: 2.00};
 
-var aleStock = 0;
-var meadStock = 0;
-
-var hopsValue = 1.00;
-var yeastValue = 1.50;
-var honeyValue = 2.00;
-
-var alePrice = 5.00;
-var meadPrice = 6.00;
+var ale = {stock: 0, price: 5.00};
+var mead = {stock: 0, price: 6.00};
 
 var customer1order = "Ale";
 var customer2order = "Mead";
@@ -29,14 +22,14 @@ function displayVarsToHTML() {
     document.getElementById("customer2order").innerHTML = customer2order;
     document.getElementById("customer3order").innerHTML = customer3order;
     document.getElementById("customer4order").innerHTML = customer4order;
- 	document.getElementById("hopsValue").innerHTML = Number(hopsValue).toFixed(2);
- 	document.getElementById("yeastValue").innerHTML = Number(yeastValue).toFixed(2);
- 	document.getElementById("honeyValue").innerHTML = Number(honeyValue).toFixed(2); 
- 	document.getElementById("aleStock").innerHTML = aleStock;
- 	document.getElementById("meadStock").innerHTML = meadStock;
-	document.getElementById("hopsStock").innerHTML = hopsStock;
-    document.getElementById("yeastStock").innerHTML = yeastStock;
-    document.getElementById("honeyStock").innerHTML = honeyStock;
+ 	document.getElementById("hopsValue").innerHTML = Number(hops.value).toFixed(2);
+ 	document.getElementById("yeastValue").innerHTML = Number(yeast.value).toFixed(2);
+ 	document.getElementById("honeyValue").innerHTML = Number(honey.value).toFixed(2); 
+ 	document.getElementById("aleStock").innerHTML = ale.stock;
+ 	document.getElementById("meadStock").innerHTML = mead.stock;
+	document.getElementById("hopsStock").innerHTML = hops.stock;
+    document.getElementById("yeastStock").innerHTML = yeast.stock;
+    document.getElementById("honeyStock").innerHTML = honey.stock;
     document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
     document.getElementById("inventory").innerHTML = inventory.toString();
 }	
@@ -45,3 +38,14 @@ function displayVarsToHTML() {
 // buy stock
 // put drink in inventory
 // serve drink to customer
+
+document.getElementById("hops").onclick = function() {buyStock(hops)};
+document.getElementById("yeast").onclick = function() {buyStock(yeast)};
+document.getElementById("honey").onclick = function() {buyStock(honey)};
+
+function buyStock(ingredient) {
+	ingredient.stock++;
+	goldBalance = goldBalance - ingredient.value;
+	document.getElementById(ingredient.name + "Stock").innerHTML = ingredient.stock;
+	document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
+}
