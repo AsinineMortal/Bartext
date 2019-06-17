@@ -1,3 +1,19 @@
+// FUNCTIONALITY ---------------------------------------
+// Customers generate new orders over time
+// What to do when you try and serve a customer that has no order
+// You cannot go in negative Gold Balance
+// You cannot go in negative stock
+// You earn money from customer sales
+
+// AESTHETIC -------------------------------------------
+// Update CSS styles
+// Move Stats to Bar
+	// Move Gold to top
+// Make the columns resize properly
+
+// POLISH ----------------------------------------------
+// Name Randomization
+
 var goldBalance = 30;
 
 var hops = {name: "hops", stock: 0, value: 1.00};
@@ -7,6 +23,7 @@ var honey = {name: "honey", stock: 0, value: 2.00};
 var ale = {name: "ale", stock: 0, price: 5.00, ingredients: [yeast, hops]};
 var mead = {name: "mead", stock: 0, price: 6.00, ingredients: [yeast, honey]};
 
+var drinkList = [ale, mead];
 var inventory = [ale, mead];
 
 var customer1 = {id: "customer1", name: "Ingrid", order: ale};
@@ -42,7 +59,7 @@ function displayVarsToHTML() {
 	
 	for (var value of inventoryItems) {
 		if (value != "inventory") {
-			inventoryText += value;
+			inventoryText += value.name;
 			
 			if (inventory.rightHand != "" ) {
 			inventoryText += " ";
@@ -50,11 +67,6 @@ function displayVarsToHTML() {
 		}
 	} document.getElementById("inventory").innerHTML = inventoryText;
 }	
-
-// List of Functions To Make
-// buy stock DONE ***
-// put drink in inventory DONE ***
-// serve drink to customer
 
 document.getElementById("hops").onclick = function() {buyStock(hops)};
 document.getElementById("yeast").onclick = function() {buyStock(yeast)};
@@ -95,8 +107,15 @@ function serveCustomer(inventory, customer) {
 		customer.order = "Served";
 		drink = inventory[1];
 	}
-	
 	document.getElementById(drink.name + "Stock").innerHTML = drink.stock;
 	document.getElementById(customer.id + "Order").innerHTML = customer.order;
 	
+	setTimeout(generateNewOrder, 3000, customer);
 }
+
+function generateNewOrder(customer) {
+		var random = Math.floor(Math.random() *2);
+		customer.order = drinkList[random];
+		
+		document.getElementById(customer.id + "Order").innerHTML = customer.order.name;
+	}
