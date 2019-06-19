@@ -37,6 +37,11 @@ footer {
 .greenDot {
 	color: green;
 	}
+
+#goldBox {
+	text-align: center;
+	height: 1em;
+}
 	
 h1 {
 	text-align: center;
@@ -44,6 +49,8 @@ h1 {
 
 #messageBox {
 	text-align: center;
+	height: 1em;
+	margin-bottom: 1em;
 }
 
 .redDot {

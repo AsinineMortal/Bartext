@@ -2,7 +2,8 @@
 // Customers generate new orders over time DONE ***
 // What to do when you try and serve a customer that has no order
 // You cannot go in negative Gold Balance
-// You cannot go in negative stock
+// You cannot go in negative stock DONE ***
+// You cannot go in negative drink stock
 // You earn money from customer sales DONE ***
 
 // AESTHETIC -------------------------------------------
@@ -112,7 +113,7 @@ document.getElementById("customer4Button").onclick = function() {serveCustomer(i
 function serveCustomer(inventory, customer) {
 	// drink gets set when the function figures out which drink is being served
 	var drink;
-	
+
 	// if the first drink in the inventory is the customers order, proceed
 	if (inventory[0] == customer.order) {
 		inventory[0].stock--;

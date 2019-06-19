@@ -15,6 +15,8 @@
 
 	<div id="messageBox"></div>
 
+	<div id="goldBox"><strong>Gold:</strong> $<span id="goldBalance"></span></div>
+
 	<div class="flex-container">
 
 	   <h2 class="underlined">Bar</h2>
@@ -44,43 +46,48 @@
 		Click the drink to put one in your hand.
 	</div>
 
-	<button id="ale">Ale (<span id="aleStock"></span> in stock)</button>
-	<button id="mead">Mead (<span id="meadStock"></span> in stock)</button>
+	<button id="ale">Ale (<span id="alePrice"></span> in stock)</button>
+	<button id="mead">Mead (<span id="meadPrice"></span> in stock)</button>
+				
+	<h4>Recipes</h4>
+		<div>Ale = Hops + Yeast</div>
+		<div>Mead = Honey + Yeast</div>
+
 		</div>
 		<div class="border">
 			<h3>Front of the Bar</h3>
 <div class="subtitle">Click the customer to serve them.</div>
 	<h4>Table 1</h4>
 	<button id="customer1Button">
-		<span class="redDot">&#x25CF;</span> <span id="customer1Name"></span> (Current Order: <span id="customer1Order"></span>)
+		<span class="redDot">&#x25CF;</span> <span id="customer1Name"></span> (Order: <span id="customer1Order"></span>)
 	</button>
 	<button id="customer2Button">
-		<span class="greenDot">&#x25CF;</span> <span id="customer2Name"></span> (Current Order: <span id="customer2Order"></span>)
+		<span class="greenDot">&#x25CF;</span> <span id="customer2Name"></span> (Order: <span id="customer2Order"></span>)
 	</button></br>
 
 	<h4>Table 2</h4>
 	<button id="customer3Button">
-		<span class="yellowDot">&#x25CF;</span> <span id="customer3Name"></span> (Current Order: <span id="customer3Order"></span>)
+		<span class="yellowDot">&#x25CF;</span> <span id="customer3Name"></span> (Order: <span id="customer3Order"></span>)
 	</button>
 	<button id="customer4Button">
-		<span class="blueDot">&#x25CF;</span> <span id="customer4Name"></span> (Current Order: <span id="customer4Order"></span>)
+		<span class="blueDot">&#x25CF;</span> <span id="customer4Name"></span> (Order: <span id="customer4Order"></span>)
 	</button>
 
 		</div>
 
  		<div class="border">
-			<h4>Inventory</h4>
+			<h3>Inventory</h3>
 				<span id="inventory"></span>
 
 			<h4>Storage</h4>
-				<div>Gold: $<span id="goldBalance"></span></div>
+				<h5>Ingredients</h5>
 				<div>Hops: <span id="hopsStock"></span></div>
 				<div>Yeast: <span id="yeastStock"></span></div>
 				<div>Honey: <span id="honeyStock"></span></div>
 
-			<h4>Recipes</h4>
-				<div>Ale = Hops + Yeast</div>
-				<div>Mead = Honey + Yeast</div>
+				<h5>Drinks</h5>
+				<div>Ale: <span id="aleStock"></span></div>
+				<div>Mead: <span id="meadStock"></span></div>
 
 		</div>
 	</div>
