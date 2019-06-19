@@ -2,6 +2,10 @@ body {
 	font-family: Times New Roman;
 	}
 
+.blueDot {
+	color: blue;
+	}
+
 .border {
 	border-style: solid;
 	border-width: 1px;
@@ -18,26 +22,6 @@ button {
 	margin-bottom: 0.25em;
 	}
 	
-.redDot {
-	color: red;
-	}
-	
-.greenDot {
-	color: green;
-	}
-	
-h1 {
-	text-align: center;
-}
-	
-.yellowDot {
-	color: yellow;
-	}
-	
-.blueDot {
-	color: blue;
-	}
-	
 .flex-container {
 	display: flex;
 	flex-direction: row;
@@ -50,10 +34,30 @@ footer {
 	text-align: center;
 	}
 	
+.greenDot {
+	color: green;
+	}
+	
+h1 {
+	text-align: center;
+}
+
+#messageBox {
+	text-align: center;
+}
+
+.redDot {
+	color: red;
+	}
+
 .subtitle {
 	font-style: italic;
 	}
 
 .underlined {
 	text-decoration: underline;
+	}
+
+.yellowDot {
+	color: yellow;
 	}

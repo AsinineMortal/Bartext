@@ -83,9 +83,22 @@ function buyStock(ingredient) {
 	document.getElementById("mead").onclick = function() {craftDrink(mead)};
 
 function craftDrink(drink) {
-	drink.stock++;
-	drink.ingredients[0].stock--;
-	drink.ingredients[1].stock--;
+	var errorMessage = "Sorry, you are out of stock.";
+	var successfulCraft = false;
+	for (var i = 0; i < drink.ingredients.length; i++) {
+		if (drink.ingredients[i].stock > 0) {
+			drink.ingredients[i].stock--;
+			successfulCraft = true;
+		} else {
+			document.getElementById("messageBox").innerHTML = errorMessage;
+			setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 3000);
+			}
+	}
+
+	if (successfulCraft) {
+		drink.stock++;
+	} 
+	
 	document.getElementById(drink.name + "Stock").innerHTML = drink.stock;
 	document.getElementById(drink.ingredients[0].name + "Stock").innerHTML = drink.ingredients[0].stock;
 	document.getElementById(drink.ingredients[1].name + "Stock").innerHTML = drink.ingredients[1].stock;
