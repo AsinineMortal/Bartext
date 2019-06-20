@@ -8,9 +8,8 @@ body {
 
 .border {
 	border-style: solid;
-	border-width: 1px;
-	padding-left: 25px;
-	padding-bottom: 25px;
+	border-width: 0px;
+	padding: 1em;
 	}
 	
 button {
@@ -25,8 +24,10 @@ button {
 .flex-container {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
-	align-content: center;
+	justify-content: space-evenly;
+	align-items: stretch;
+	align-content: space-around;
+	margin: 3em;
 	}
 	
 footer {
@@ -48,6 +49,10 @@ footer {
 h1 {
 	text-align: center;
 	}
+
+.item {
+	flex-grow: 1;
+}
 
 #messageBox {
 	text-align: center;
