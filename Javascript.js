@@ -141,7 +141,8 @@ function serveCustomer(inventory, customer) {
 }
 
 function generateNewOrder(customer) {
-		var random = Math.floor(Math.random() *2);
+		var numberOfDrinksModifier = drinkList.length;
+		var random = Math.floor(Math.random() * numberOfDrinksModifier);
 		customer.order = drinkList[random];
 		
 		document.getElementById(customer.id + "Order").innerHTML = customer.order.name;
