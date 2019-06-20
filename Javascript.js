@@ -5,11 +5,15 @@
 // You cannot go in negative stock DONE ***
 // You cannot go in negative drink stock
 // You earn money from customer sales DONE ***
+// Figure out the Inventory vs. Stock thing
+// Write function to create button for each ingredient
+// Write function to create button for each known drink
+// Write function to create button for current customers
 
 // AESTHETIC -------------------------------------------
 // Update CSS styles
 // Move Stats to Bar
-	// Move Gold to top
+	// Move Gold to top DONE ***
 // Make the columns resize properly
 
 // POLISH ----------------------------------------------
@@ -22,7 +26,7 @@ var yeast = {name: "yeast", stock: 0, value: 1.50};
 var honey = {name: "honey", stock: 0, value: 2.00};
 
 var ale = {name: "ale", stock: 0, price: 5.00, ingredients: [yeast, hops]};
-var mead = {name: "mead", stock: 0, price: 6.00, ingredients: [yeast, honey]};
+var mead = {name: "mead", stock: 0, price: 6.50, ingredients: [yeast, honey]};
 
 var drinkList = [ale, mead];
 var inventory = [ale, mead];
@@ -48,7 +52,7 @@ function displayVarsToHTML() {
  	document.getElementById("yeastValue").innerHTML = Number(yeast.value).toFixed(2);
  	document.getElementById("honeyValue").innerHTML = Number(honey.value).toFixed(2); 
  	document.getElementById("aleStock").innerHTML = ale.stock;
- 	document.getElementById("meadStock").innerHTML = mead.stock;
+ 	document.getElementById("meadStock").innerHTML = mead.stock; 
 	document.getElementById("hopsStock").innerHTML = hops.stock;
     document.getElementById("yeastStock").innerHTML = yeast.stock;
     document.getElementById("honeyStock").innerHTML = honey.stock;
@@ -84,7 +88,7 @@ function buyStock(ingredient) {
 	document.getElementById("mead").onclick = function() {craftDrink(mead)};
 
 function craftDrink(drink) {
-	var errorMessage = "Sorry, you are out of stock.";
+	var errorMessage = "Sorry, you don't have enough ingredients.";
 	var successfulCraft = false;
 	for (var i = 0; i < drink.ingredients.length; i++) {
 		if (drink.ingredients[i].stock > 0) {
