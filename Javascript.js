@@ -134,7 +134,7 @@ function serveCustomer(inventory, customer) {
 	}
 	document.getElementById(drink.name + "Stock").innerHTML = drink.stock;
 	document.getElementById(customer.id + "Order").innerHTML = customer.order;
-	document.getElementById("goldBalance").innerHTML = goldBalance;
+	document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
 	
 	// triggers a new order after three seconds
 	setTimeout(generateNewOrder, 3000, customer);
