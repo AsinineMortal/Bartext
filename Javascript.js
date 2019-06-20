@@ -5,7 +5,7 @@
 // You cannot go in negative stock DONE ***
 // You cannot go in negative drink stock
 // You earn money from customer sales DONE ***
-// Figure out the Inventory vs. Stock thing
+// Figure out the Inventory vs. Stock thing DONE ***
 // Write function to create button for each ingredient
 // Write function to create button for each known drink
 // Write function to create button for current customers
@@ -29,7 +29,6 @@ var ale = {name: "ale", stock: 0, price: 5.00, ingredients: [yeast, hops]};
 var mead = {name: "mead", stock: 0, price: 6.50, ingredients: [yeast, honey]};
 
 var drinkList = [ale, mead];
-var inventory = [ale, mead];
 
 var customer1 = {id: "customer1", name: "Ingrid", order: ale};
 var customer2 = {id: "customer2", name: "Hans", order: mead};
@@ -57,20 +56,6 @@ function displayVarsToHTML() {
     document.getElementById("yeastStock").innerHTML = yeast.stock;
     document.getElementById("honeyStock").innerHTML = honey.stock;
     document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
-    
-	var inventoryItems = Object.values(inventory);
-	var inventoryText = "";
-	var inventorySize = Object.keys(inventory).length;
-	
-	for (var value of inventoryItems) {
-		if (value != "inventory") {
-			inventoryText += value.name;
-			
-			if (inventory.rightHand != "" ) {
-			inventoryText += " ";
-			}
-		}
-	} document.getElementById("inventory").innerHTML = inventoryText;
 }	
 
 document.getElementById("hops").onclick = function() {buyStock(hops)};
@@ -109,35 +94,32 @@ function craftDrink(drink) {
 	document.getElementById(drink.ingredients[1].name + "Stock").innerHTML = drink.ingredients[1].stock;
 }
 
-document.getElementById("customer1Button").onclick = function() {serveCustomer(inventory, customer1)};
-document.getElementById("customer2Button").onclick = function() {serveCustomer(inventory, customer2)};
-document.getElementById("customer3Button").onclick = function() {serveCustomer(inventory, customer3)};
-document.getElementById("customer4Button").onclick = function() {serveCustomer(inventory, customer4)};
+document.getElementById("customer1Button").onclick = function() {serveCustomer(customer1)};
+document.getElementById("customer2Button").onclick = function() {serveCustomer(customer2)};
+document.getElementById("customer3Button").onclick = function() {serveCustomer(customer3)};
+document.getElementById("customer4Button").onclick = function() {serveCustomer(customer4)};
 
-function serveCustomer(inventory, customer) {
+function serveCustomer(customer) {
 	// drink gets set when the function figures out which drink is being served
 	var drink;
-
-	// if the first drink in the inventory is the customers order, proceed
-	if (inventory[0] == customer.order) {
-		inventory[0].stock--;
-		customer.order = "Served";
-		drink = inventory[0];
-		goldBalance += drink.price;
-		
-		// if not, try the second drink in the inventory
-	} else if (inventory[1] == customer.order) {
-		inventory[1].stock--;
-		customer.order = "Served";
-		drink = inventory[1];
-		goldBalance += drink.price;
-	}
-	document.getElementById(drink.name + "Stock").innerHTML = drink.stock;
-	document.getElementById(customer.id + "Order").innerHTML = customer.order;
-	document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
 	
-	// triggers a new order after three seconds
+	if (customer.order.stock) {
+		customer.order.stock--;
+		document.getElementById(customer.order.name + "Stock").innerHTML = customer.order.stock;
+		goldBalance += customer.order.price;
+		
+		customer.order = "Served";
+
+		document.getElementById(customer.id + "Order").innerHTML = customer.order;
+		document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
+
+		// triggers a new order after three seconds
 	setTimeout(generateNewOrder, 3000, customer);
+	} else {
+			var errorMessage = "Sorry, you don't have any of those drinks crafted.";
+			document.getElementById("messageBox").innerHTML = errorMessage;
+			setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 3000);
+			}
 }
 
 function generateNewOrder(customer) {
@@ -147,5 +129,3 @@ function generateNewOrder(customer) {
 		
 		document.getElementById(customer.id + "Order").innerHTML = customer.order.name;
 	}
-	
-	

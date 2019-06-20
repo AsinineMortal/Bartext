@@ -1,5 +1,6 @@
 body {
 	font-family: Times New Roman;
+	margin-top: 2em;
 	}
 
 .blueDot {
@@ -9,7 +10,7 @@ body {
 .border {
 	border-style: solid;
 	border-width: 0px;
-	padding: 1em;
+	padding: 0em 1em 1em 1em;
 	}
 	
 button {
@@ -27,7 +28,7 @@ button {
 	justify-content: space-evenly;
 	align-items: stretch;
 	align-content: space-around;
-	margin: 3em;
+	margin: 0em 3em 3em 3em;
 	}
 	
 footer {
@@ -43,7 +44,7 @@ footer {
 #goldBox {
 	text-align: center;
 	height: 1em;
-	margin: 1em;
+	margin: 2em;
 	}
 	
 h1 {
@@ -57,7 +58,7 @@ h1 {
 #messageBox {
 	text-align: center;
 	height: 1em;
-	margin-bottom: 1em;
+	margin: 3em 0em 1em 0em;
 	}
 
 .redDot {
