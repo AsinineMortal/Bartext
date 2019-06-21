@@ -1,9 +1,9 @@
 // FUNCTIONALITY ---------------------------------------
 // Customers generate new orders over time DONE ***
-// What to do when you try and serve a customer that has no order
+// What to do when you try and serve a customer that has no order DONE ***
 // You cannot go in negative Gold Balance
 // You cannot go in negative stock DONE ***
-// You cannot go in negative drink stock
+// You cannot go in negative drink stock DONE ***
 // You earn money from customer sales DONE ***
 // Figure out the Inventory vs. Stock thing DONE ***
 // Write function to create button for each ingredient
@@ -71,10 +71,17 @@ document.getElementById("yeast").onclick = function() {buyStock(yeast)};
 document.getElementById("honey").onclick = function() {buyStock(honey)};
 
 function buyStock(ingredient) {
-	ingredient.stock++;
-	goldBalance = goldBalance - ingredient.value;
-	document.getElementById(ingredient.name + "Stock").innerHTML = ingredient.stock;
-	document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
+	var errorMessage = "You do not have enough Gold to buy that ingredient.";
+
+	if (goldBalance >= ingredient.value) {
+			ingredient.stock++;
+			goldBalance = goldBalance - ingredient.value;
+			document.getElementById(ingredient.name + "Stock").innerHTML = ingredient.stock;
+			document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
+	} else {
+		document.getElementById("messageBox").innerHTML = errorMessage;
+		setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 5000);
+	}
 }
 
 	document.getElementById("ale").onclick = function() {craftDrink(ale)};
@@ -89,17 +96,18 @@ function craftDrink(drink) {
 	for (var i = 0; i < drink.ingredients.length; i++) {
 		if (drink.ingredients[i].stock > 0) {
 			successfulCraft++;
-			ingredientsToReduceStock.push(drink.ingredients[i].stock);
+			ingredientsToReduceStock.push(drink.ingredients[i]);
 		} else {
 			document.getElementById("messageBox").innerHTML = errorMessage;
-			setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 3000);
+			setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 5000);
 			}
 	}
 
 	if (successfulCraft == drink.ingredients.length) {
 		drink.stock++;
-		for (ingredients in ingredientsToReduceStock) {
-			ingredients--;
+		for (var i = 0; i < drink.ingredients.length; i++) {
+			drink.ingredients[i].stock--;
+			console.log(drink.ingredients[i].stock);
 		}
 	} 
 	
