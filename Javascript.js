@@ -19,6 +19,10 @@
 // POLISH ----------------------------------------------
 // Name Randomization
 
+// FUNNY ADDITIONS -------------------------------------
+// Kick out loitering customers
+// People pay their tabs late so cash flow is a challenge
+
 var goldBalance = 30;
 
 var hops = {name: "hops", stock: 0, value: 1.00};
@@ -34,6 +38,10 @@ var customer1 = {id: "customer1", name: "Ingrid", order: ale};
 var customer2 = {id: "customer2", name: "Hans", order: mead};
 var customer3 = {id: "customer3", name: "Jenxi", order: ale};
 var customer4 = {id: "customer4", name: "Elias", order: mead};
+
+// Save variables to browser session
+/*localStorage.setItem('gold', JSON.stringify(goldBalance));
+var gold = localStorage.getItem('gold');*/
 
 // this runs the displayVars function when page is loaded
 document.body.onload = function() {displayVarsToHTML()};
@@ -74,19 +82,25 @@ function buyStock(ingredient) {
 
 function craftDrink(drink) {
 	var errorMessage = "Sorry, you don't have enough ingredients.";
-	var successfulCraft = false;
+	var successfulCraft = 0;
+	var ingredientsToReduceStock = [];
+	// for each ingredient in the drink, check that the ingredient is in stock
+	// if it's in stock, increase successfulCraft and add ingredient 
 	for (var i = 0; i < drink.ingredients.length; i++) {
 		if (drink.ingredients[i].stock > 0) {
-			drink.ingredients[i].stock--;
-			successfulCraft = true;
+			successfulCraft++;
+			ingredientsToReduceStock.push(drink.ingredients[i].stock);
 		} else {
 			document.getElementById("messageBox").innerHTML = errorMessage;
 			setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 3000);
 			}
 	}
 
-	if (successfulCraft) {
+	if (successfulCraft == drink.ingredients.length) {
 		drink.stock++;
+		for (ingredients in ingredientsToReduceStock) {
+			ingredients--;
+		}
 	} 
 	
 	document.getElementById(drink.name + "Stock").innerHTML = drink.stock;
