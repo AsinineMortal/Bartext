@@ -1,3 +1,46 @@
+Start Over Button
+
+--------------------
+
+Open/Close Day/Night
+
+Rent Due 1st of the Month
+
+Show time going by
+
+-----
+
+Day Counter
+	of the week
+	time of day
+30 Days - Rent automatically subtracted
+	if not enough money - lose the game
+
+First start the game - night mode
+	
+Day Cycle - Craft Drinks, Serve Drinks
+Night Cycle - Purchase Ingredients
+
+Variable dayOrNight = night;
+Night routine
+	click done
+dayOrNight = day;
+Day routine
+	timed - 1 min
+Display day time on clock
+
+
+-----
+
+
+LATER:Days of the Week
+
+
+--------------------
+
+
+Save with Session
+
 Iterate through tables
 If first table has vacancy
 Add a new customer
