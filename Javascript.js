@@ -35,6 +35,33 @@
 
 var goldBalance = 30;
 
+var dayNight = "night";
+
+var clockTime = "";
+var currentDate = new Date();
+currentDate.setHours(06);
+currentDate.setMinutes(00);
+formatDate(currentDate);
+
+// Add leading zeroes to hours and minutes when needed
+function formatDate(date) {
+	var currentHours = currentDate.getHours();
+	
+	if (currentHours < 10) {
+		currentHours = "0" + currentHours.toString();
+	}
+	
+	var currentMinutes = currentDate.getMinutes();
+	
+	if (currentMinutes < 10) {
+		currentMinutes = "0" + currentMinutes.toString();
+	}
+	
+	clockTime = currentHours + ":" + currentMinutes;
+}
+
+var timeAdvanceInterval = setInterval(advanceTime, 1000, currentDate);
+
 var hops = {name: "hops", stock: 0, value: 1.00};
 var yeast = {name: "yeast", stock: 0, value: 1.50};
 var honey = {name: "honey", stock: 0, value: 2.00};
@@ -58,6 +85,7 @@ var gold = localStorage.getItem('gold');*/
 document.body.onload = function() {displayVarsToHTML()};
 
 function displayVarsToHTML() {
+	document.getElementById("clockBox").innerHTML = clockTime;
     document.getElementById("customer1Name").innerHTML = customer1.name;
     document.getElementById("customer2Name").innerHTML = customer2.name;
     document.getElementById("customer3Name").innerHTML = customer3.name;
@@ -162,3 +190,9 @@ function generateNewOrder(customer) {
 		
 		document.getElementById(customer.id + "Order").innerHTML = customer.order.name;
 	}
+	
+	
+function advanceTime(currentTime) {
+	var newTime = new Date(currentTime.getTime() + 600000);
+	document.getElementById("clockBox").innerHTML = newTime;
+}
