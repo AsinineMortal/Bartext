@@ -1,9 +1,9 @@
 // FUNCTIONALITY ---------------------------------------
 // Customers generate new orders over time DONE ***
 // What to do when you try and serve a customer that has no order
-// You cannot go in negative Gold Balance
+// You cannot go in negative Gold Balance DONE ***
 // You cannot go in negative stock DONE ***
-// You cannot go in negative drink stock
+// You cannot go in negative drink stock DONE ***
 // You earn money from customer sales DONE ***
 // Figure out the Inventory vs. Stock thing DONE ***
 // Write function to create button for each ingredient
@@ -63,35 +63,44 @@ document.getElementById("yeast").onclick = function() {buyStock(yeast)};
 document.getElementById("honey").onclick = function() {buyStock(honey)};
 
 function buyStock(ingredient) {
-	ingredient.stock++;
-	goldBalance = goldBalance - ingredient.value;
-	document.getElementById(ingredient.name + "Stock").innerHTML = ingredient.stock;
-	document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
+	var noMoneyMessage = "Sorry, you don't have enough money.";
+	if(goldBalance > 0) {
+		ingredient.stock++;
+		goldBalance = goldBalance - ingredient.value;
+		document.getElementById(ingredient.name + "Stock").innerHTML = ingredient.stock;
+		document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
+	} else {
+		document.getElementById("messageBox").innerHTML = noMoneyMessage;
+		setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 3000)
+	}
 }
 
 	document.getElementById("ale").onclick = function() {craftDrink(ale)};
 	document.getElementById("mead").onclick = function() {craftDrink(mead)};
-
-function craftDrink(drink) {
-	var errorMessage = "Sorry, you don't have enough ingredients.";
-	var successfulCraft = false;
-	for (var i = 0; i < drink.ingredients.length; i++) {
-		if (drink.ingredients[i].stock > 0) {
-			drink.ingredients[i].stock--;
-			successfulCraft = true;
-		} else {
-			document.getElementById("messageBox").innerHTML = errorMessage;
-			setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 3000);
-			}
-	}
-
-	if (successfulCraft) {
-		drink.stock++;
-	} 
 	
-	document.getElementById(drink.name + "Stock").innerHTML = drink.stock;
-	document.getElementById(drink.ingredients[0].name + "Stock").innerHTML = drink.ingredients[0].stock;
-	document.getElementById(drink.ingredients[1].name + "Stock").innerHTML = drink.ingredients[1].stock;
+function craftDrink(drink) {
+	var drinkIngredients = drink.ingredients.length;
+	var availableIngredients = 0;
+	var errorMessage = "Sorry, you don't have enough ingredients.";
+	
+	for (var i = 0; i < drinkIngredients; i++) {
+		if (drink.ingredients[i].stock > 0) {
+			availableIngredients++;
+		}
+	}
+	
+	if (availableIngredients == drinkIngredients) {
+		for (var i = 0; i < drinkIngredients; i++) {
+			drink.ingredients[i].stock--;
+			document.getElementById(drink.ingredients[i].name + "Stock").innerHTML = drink.ingredients[i].stock;
+		}
+		
+		drink.stock++;
+		document.getElementById(drink.name + "Stock").innerHTML = drink.stock;
+	} else {
+		document.getElementById("messageBox").innerHTML = errorMessage;
+		setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 3000);
+	}
 }
 
 document.getElementById("customer1Button").onclick = function() {serveCustomer(customer1)};
