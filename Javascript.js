@@ -35,32 +35,16 @@
 
 var goldBalance = 30;
 
-var dayNight = "night";
+var gameTime = new Date(0, 0);
+	gameTime.setHours(6);
+	gameTime.setMinutes(30);
 
-var clockTime = "";
-var currentDate = new Date();
-currentDate.setHours(06);
-currentDate.setMinutes(00);
-formatDate(currentDate);
+var h = gameTime.getHours();
+var m = gameTime.getMinutes();
 
-// Add leading zeroes to hours and minutes when needed
-function formatDate(date) {
-	var currentHours = currentDate.getHours();
-	
-	if (currentHours < 10) {
-		currentHours = "0" + currentHours.toString();
-	}
-	
-	var currentMinutes = currentDate.getMinutes();
-	
-	if (currentMinutes < 10) {
-		currentMinutes = "0" + currentMinutes.toString();
-	}
-	
-	clockTime = currentHours + ":" + currentMinutes;
-}
+var clockTime = h + ":" + m;
 
-var timeAdvanceInterval = setInterval(advanceTime, 1000, currentDate);
+var gameDay = gameTime.getDate();
 
 var hops = {name: "hops", stock: 0, value: 1.00};
 var yeast = {name: "yeast", stock: 0, value: 1.50};
@@ -77,15 +61,11 @@ var customer2 = {id: "customer2", name: "Hans", order: mead};
 var customer3 = {id: "customer3", name: "Jenxi", order: ale};
 var customer4 = {id: "customer4", name: "Elias", order: mead};
 
-// Save variables to browser session
-/*localStorage.setItem('gold', JSON.stringify(goldBalance));
-var gold = localStorage.getItem('gold');*/
-
-// this runs the displayVars function when page is loaded
-document.body.onload = function() {displayVarsToHTML()};
+document.body.onload = function() {displayVarsToHTML(), advanceTime()};
 
 function displayVarsToHTML() {
 	document.getElementById("clockBox").innerHTML = clockTime;
+	document.getElementById("dayBox").innerHTML = gameDay;
     document.getElementById("customer1Name").innerHTML = customer1.name;
     document.getElementById("customer2Name").innerHTML = customer2.name;
     document.getElementById("customer3Name").innerHTML = customer3.name;
@@ -104,6 +84,22 @@ function displayVarsToHTML() {
     document.getElementById("honeyStock").innerHTML = honey.stock;
     document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
 }	
+
+function advanceTime() {
+	gameTime.setMinutes(gameTime.getMinutes() + 10);
+	h = fixTime(gameTime.getHours());
+	m = fixTime(gameTime.getMinutes());
+	gameDay = gameTime.getDay();
+	document.getElementById("clockBox").innerHTML = h + ":" + m;
+	document.getElementById("dayBox").innerHTML = gameDay;
+	setTimeout(advanceTime, 1000);
+} 
+
+function fixTime(timeInt) {
+	if (timeInt < 10) {
+		return "0" + timeInt;
+	} else return timeInt;
+}
 
 document.getElementById("hops").onclick = function() {buyStock(hops)};
 document.getElementById("yeast").onclick = function() {buyStock(yeast)};
@@ -186,9 +182,3 @@ function generateNewOrder(customer) {
 		
 		document.getElementById(customer.id + "Order").innerHTML = customer.order.name;
 	}
-	
-	
-function advanceTime(currentTime) {
-	var newTime = new Date(currentTime.getTime() + 600000);
-	document.getElementById("clockBox").innerHTML = newTime;
-}

@@ -55,10 +55,10 @@ h1 {
 	flex-grow: 1;
 }
 
-#messageBox {
+#messageBox, #clockBox, #dateBox {
 	text-align: center;
 	height: 1em;
-	margin: 3em 0em 1em 0em;
+	margin: 2em 0em 1em 0em;
 	}
 
 .redDot {
