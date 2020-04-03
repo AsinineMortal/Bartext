@@ -1,0 +1,92 @@
+Start Over Button
+
+--------------------
+
+Open/Close Day/Night
+
+Rent Due 1st of the Month
+
+Show time going by
+
+-----
+
+Day Counter
+	of the week
+	time of day
+30 Days - Rent automatically subtracted
+	if not enough money - lose the game
+
+First start the game - night mode
+	
+Day Cycle - Craft Drinks, Serve Drinks
+Night Cycle - Purchase Ingredients
+
+Variable dayOrNight = night;
+Night routine
+	click done
+dayOrNight = day;
+Day routine
+	timed - 1 min
+Display day time on clock
+
+
+-----
+
+
+LATER:Days of the Week
+
+
+--------------------
+
+
+Save with Session
+
+Iterate through tables
+If first table has vacancy
+Add a new customer
+
+createCustomer
+set name
+	var customerNameList
+set order
+	known orders
+
+customer order timer
+	15 seconds
+	var customers = {};
+
+var customerNameList = {
+	first: [
+		Alleta, Amund, Arvid, Bjorn, Bo, Canute, Carolus, Carson, Dag, Dagna, Dahlia, Davin, Delling, Denholm, Dyre, Egil, Eir, Elvis, Eric, Erica, Evonne, Filip, Fortinbras, Frey, Freya, Girls, Gudrun, Gunda, Haakon, Halle, Hannes, Idonea, Igor, Ingmar, Ingrid, Ingvar, Jarl, Jesen, Kaj, Karena, Karr, Kelda, Kelsey, Kelsey, Kerr, Kettil, Kiersten, Knute, Kolby, Krystyn, Lang, Lars, Larsen, Linnea, Lis, Lisolette, Litzy, Loki, Ludvig, Lundy, Lunt, Malin, Marny, Mats, Mia, Nels, Niels, Nissa, Norb, Odell, Odo, Olan, Pal, Quenby, Quinby, Quinby, Rad, Ran, Ranveig, Rinda, Runa, Rune, Sanna, Savea, Selma, Signa, Signild, Sigrun, Skjøld, Snorre, Snøfrid, Sonja, Sorley, Steinar, Stieran, Svea, Sven, Synnove, Sølve, Thiassi, Thoralf, Thorborg, Thorin, Thorstein, Thurid, Thyrrni, Toril, Toste, Toyah, Tryggvi, Tyra, Ula, Ulffr, Ulick, Ull, Ulrik, Ulster, Ultar, Unn, Vali, Valkyrie, Vanja, Vannevar, Vanslow, Vidar, Vidkun, Vigdis, Viggo, Viljalmr, Viljo, Viola, Von, Waage, Wray, Ylwa, Zainab, Zvi
+		],
+	last: [
+		Aaberg, Aland, Alf, Alfson, Ander, Askelson, Aven, Axel, Backe, Bakken, Becher, Beck, Bell, Bengtsson, Benson, Berg, Bergh, Bernt, Bi, Bielke, Bjerk, Bjerke, Blom, Bonde, Borg, Borgerson, Borgeson, Brand, Bro, Bugge, Bugge, Bunderson, Carlson, Christeson, Dal, Daman, Dolph, Edman, Elison, Ellingboe, Emanuelson, Ericson, Erling, Eskelson, Eskildsen, Estenson, Fagerberg, Falk, Falkenberg, Forberg, Fredrikson, Friberg, Friis, Frydenlund, Gangestad, Gulbrandsen, Gulbrandson, Gulbranson, Gustason, Gustavson, Guttormson, Haldorson, Halpain, Halvorson, Haralson, Hartvigsen, Hatlen, Haugrud, Haugstad, Helgason, Helvig, Heskin, Hexum, Hillesland, Hjelmstad, Hjorth, Hohlt, Holmen, Jostad, Junge, Kaase, Karsten, Klingenberg, Knudtson, Kolbeck, Kolsrud, Krog, Krogh, Krum, Kvalheim, Leif, Lind, Lorenson, Lund, Mathieson, Mathison, Matsen, Ness, Nord, Nyberg, Nybo, Nyborg, Nygaard, Nygard, Nyhus, Nyland, Nylund, Ohlson, Olafson, Oscar, Peerson, Pihl, Riis, Ring, Risberg, Salverson, Sandberg, Sandoe, Sigmond, Skau, Soelberg, Steenberg, Steensen, Stinar, Thomason, Thor, Thorp, Thostenson, Toft, Tofte, Torgrimson, Torp, Tostenson, Tranum, Truelson, Trulson, Trygg, Vagle, Vang, Westberg, Westergaard, Westergard
+		]
+	};
+
+function generateCustomer() {
+	var customerFullName;
+	var customerFirstName;
+	var customerLastName;
+	var customerOrder;
+
+	var numberOfFirstNamesModifier = customerNameList.first.length;
+	var numberOfLastNamesModifier = customerNameList.last.length;
+	var numberOfKnownDrinks = knownDrinks.length;
+
+	var firstRandom = Math.floor(Math.random() * numberOfFirstNamesModifier);
+	var lastRandom = Math.floor(Math.random() * numberOfLasttNamesModifier);
+	var orderRandom = Math.floor(Math.random() * numberOfKnownDrinks);
+	
+	customerFirstName = customerNameList.first[firstRandom];
+	customerLastName = customerNameList.last[lastRandom];
+
+	customerFullName = customerFirstName + " " + customerLastName;
+
+	customerOrder = knownDrinks[orderRandom];
+
+	customers.push(
+		"name: " + customerFullName + "," +
+		"order: " + customerOrder
+		);
+}
