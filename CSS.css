@@ -55,7 +55,7 @@ h1 {
 	flex-grow: 1;
 }
 
-#messageBox, #clockBox, #dateBox {
+#messageBox, #dateBox, #dayTimeBox {
 	text-align: center;
 	height: 1em;
 	margin: 2em 0em 1em 0em;

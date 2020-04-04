@@ -1,38 +1,3 @@
-// FUNCTIONALITY ---------------------------------------
-// Customers generate new orders over time DONE ***
-// What to do when you try and serve a customer that has no order DONE ***
-// You cannot go in negative Gold Balance DONE ***
-// You cannot go in negative stock DONE ***
-// You cannot go in negative drink stock DONE ***
-// You earn money from customer sales DONE ***
-// Figure out the Inventory vs. Stock thing DONE ***
-
-// CONTENT ---------------------------------------------
-// Build out recipe list/drink menu
-// Add food/complex orders
-// Day/night cycle
-// Bar Upgrades
-// Daily or Montly Rent
-
-// SUSTAINABILITY / SCALE
-// Write function to create button for each ingredient
-// Write function to create button for each known drink
-// Write function to create button for current customers
-
-// AESTHETIC -------------------------------------------
-// Update CSS styles
-// Move Stats to Bar
-	// Move Gold to top DONE ***
-// Make the columns resize properly
-
-// POLISH ----------------------------------------------
-// Name Randomization
-// Customers generate after a certain period of time
-
-// FUNNY ADDITIONS -------------------------------------
-// Kick out loitering customers
-// People pay their tabs late so cash flow is a challenge
-
 var goldBalance = 30;
 
 var gameTime = new Date(1, 1);
@@ -47,6 +12,8 @@ var clockTime = h + ":" + m;
 var gameDay = gameTime.getDate();
 var gameMonth = gameTime.getMonth();
 var gameYear = gameTime.getYear();
+var gameDayofWeek = gameTime.getDay();
+var gameDayofWeekName = "Example";
 
 var hops = {name: "hops", stock: 0, value: 1.00};
 var yeast = {name: "yeast", stock: 0, value: 1.50};
@@ -66,7 +33,9 @@ var customer4 = {id: "customer4", name: "Elias", order: mead};
 document.body.onload = function() {displayVarsToHTML(), advanceTime()};
 
 function displayVarsToHTML() {
+	
 	document.getElementById("clockBox").innerHTML = clockTime;
+	document.getElementById("dayOfWeekBox").innerHTML = gameDayofWeekName;
 	document.getElementById("dayBox").innerHTML = gameDay;
 	document.getElementById("monthBox").innerHTML = gameMonth;
 	document.getElementById("yearBox").innerHTML = gameYear;
@@ -91,15 +60,21 @@ function displayVarsToHTML() {
 
 function advanceTime() {
 	gameTime.setMinutes(gameTime.getMinutes() + 15);
+	
 	h = fixTime(gameTime.getHours());
 	m = fixTime(gameTime.getMinutes());
+	
 	gameMonth = gameTime.getMonth();
 	gameYear = gameTime.getYear();
 	gameDay = gameTime.getDate();
-	document.getElementById("clockBox").innerHTML = h + ":" + m;
-	document.getElementById("dayBox").innerHTML = gameDay;
-	document.getElementById("monthBox").innerHTML = gameMonth;
-	document.getElementById("yearBox").innerHTML = gameYear;
+	gameDayOfWeek = gameTime.getDay();
+	gameDayOfWeekName = dayName(gameDayOfWeek);
+	
+		document.getElementById("clockBox").innerHTML = h + ":" + m;
+		document.getElementById("dayBox").innerHTML = gameDay;
+		document.getElementById("monthBox").innerHTML = gameMonth;
+		document.getElementById("yearBox").innerHTML = gameYear;
+		document.getElementById("dayOfWeekBox").innerHTML = gameDayOfWeekName;
 	setTimeout(advanceTime, 1000);
 } 
 
@@ -107,6 +82,31 @@ function fixTime(timeInt) {
 	if (timeInt < 10) {
 		return "0" + timeInt;
 	} else return timeInt;
+}
+
+function dayName(dayInt) {
+	switch(dayInt) {
+		case 0: return "Sunday";
+			break;
+			
+		case 1: return "Monday";
+			break;
+			
+		case 2: return "Tuesday";
+			break;
+			
+		case 3: return "Wednesday";
+			break;
+			
+		case 4: return "Thursday";
+			break;
+			
+		case 5: return "Friday";
+			break;
+			
+		case 6: return "Saturday";
+			break;
+	}
 }
 
 document.getElementById("hops").onclick = function() {buyStock(hops)};

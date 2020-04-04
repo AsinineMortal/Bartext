@@ -2,11 +2,53 @@ Start Over Button
 
 --------------------
 
-Open/Close Day/Night
+DAY/NIGHT
+- Monthly Property Tax
+-- shows up 2 days before due. 5 total days to pay.
+- Only customers between hours 11 - 2am
+- More customers between 8 - 12am
+- You only have 5 seconds to serve customers before they leave
+- Customers request drinks that you don't know yet
+- seasonal festivals with added business
 
-Rent Due 1st of the Month
 
-Show time going by
+SHOP TAB
+- Buy new ingredients
+
+// FUNCTIONALITY ---------------------------------------
+// Customers generate new orders over time DONE ***
+// What to do when you try and serve a customer that has no order DONE ***
+// You cannot go in negative Gold Balance DONE ***
+// You cannot go in negative stock DONE ***
+// You cannot go in negative drink stock DONE ***
+// You earn money from customer sales DONE ***
+// Figure out the Inventory vs. Stock thing DONE ***
+
+// CONTENT ---------------------------------------------
+// Build out recipe list/drink menu
+// Add food/complex orders
+// Day/night cycle
+// Bar Upgrades
+// Daily or Montly Rent
+
+// SUSTAINABILITY / SCALE
+// Write function to create button for each ingredient
+// Write function to create button for each known drink
+// Write function to create button for current customers
+
+// AESTHETIC -------------------------------------------
+// Update CSS styles
+// Move Stats to Bar
+	// Move Gold to top DONE ***
+// Make the columns resize properly
+
+// POLISH ----------------------------------------------
+// Name Randomization
+// Customers generate after a certain period of time
+
+// FUNNY ADDITIONS -------------------------------------
+// Kick out loitering customers
+// People pay their tabs late so cash flow is a challenge
 
 -----
 
