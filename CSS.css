@@ -58,10 +58,14 @@ li {
 	list-style-type: none;
 	}
 
-#messageBox, #dateBox, #dayTimeBox {
+#messageBox, #dateBox, #dayTimeBox, #propertyTaxBox {
 	text-align: center;
 	height: 1em;
 	margin: 2em 0em 1em 0em;
+	}
+
+#propertyTaxButton {
+	display: none;
 	}
 
 .redDot {
