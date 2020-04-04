@@ -26,18 +26,17 @@
 		<div class="border item">
 			<h3>Behind the Bar</h3>
 
-	<button id="hops">Hops ($<span id="hopsValue"></span>)</button>
-	<button id="yeast">Yeast ($<span id="yeastValue"></span>)</button>
-	<button id="honey">Honey ($<span id="honeyValue"></span>)</button>
+			<h4>Buy Ingredients</h4>
+				<ul>
+					<li><button id="hops">Hops ($<span id="hopsValue"></span>)</button><button id="5xHops">x5</button></li>
+					<li><button id="yeast">Yeast ($<span id="yeastValue"></span>)</button><button id="5xYeast">x5</button></li>
+					<li><button id="honey">Honey ($<span id="honeyValue"></span>)</button><button id="5xHoney">x5</button></li>
+				</ul>
 
-	</br></br>
-
-	<button id="ale">Craft Ale</button>
-	<button id="mead">Craft Mead</button>
-				
-	<h4>Recipes</h4>
-		<div>No recipes learned.</div>
-
+			<h4>Craft Drinks</h4>
+				<button id="ale">Craft Ale</button>
+				<button id="mead">Craft Mead</button>
+			
 		</div>
 		<div class="border item">
 			<h3>Front of the Bar</h3>
@@ -71,7 +70,16 @@
 				<div>Ale: <span id="aleStock"></span></div>
 				<div>Mead: <span id="meadStock"></span></div>
 				<div><span id="inventory"></span></div>
-
+				
+				<h4>Recipes</h4>
+				<div>No recipes learned.</div>
+		</div>
+		
+	</div>
+	
+	<div class="flex-container">
+		<div class="border item">
+			<button id="startOverButton">Start Over</button>
 		</div>
 	</div>
 

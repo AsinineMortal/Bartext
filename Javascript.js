@@ -112,6 +112,9 @@ function dayName(dayInt) {
 document.getElementById("hops").onclick = function() {buyStock(hops)};
 document.getElementById("yeast").onclick = function() {buyStock(yeast)};
 document.getElementById("honey").onclick = function() {buyStock(honey)};
+document.getElementById("5xHops").onclick = function() {buyStock5(hops)};
+document.getElementById("5xYeast").onclick = function() {buyStock5(yeast)};
+document.getElementById("5xHoney").onclick = function() {buyStock5(honey)};
 
 function buyStock(ingredient) {
 	var errorMessage = "You do not have enough Gold to buy that ingredient.";
@@ -119,6 +122,21 @@ function buyStock(ingredient) {
 	if (goldBalance >= ingredient.value) {
 			ingredient.stock++;
 			goldBalance = goldBalance - ingredient.value;
+			document.getElementById(ingredient.name + "Stock").innerHTML = ingredient.stock;
+			document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
+	} else {
+		document.getElementById("messageBox").innerHTML = errorMessage;
+		setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 5000);
+	}
+}
+
+function buyStock5(ingredient) {
+	var errorMessage = "You do not have enough Gold to buy that ingredient.";
+	var ingredientValue5 = ingredient.value * 5;
+	
+	if (goldBalance >= (ingredientValue5)) {
+			ingredient.stock += 5;
+			goldBalance = goldBalance - ingredientValue5;
 			document.getElementById(ingredient.name + "Stock").innerHTML = ingredient.stock;
 			document.getElementById("goldBalance").innerHTML = Number(goldBalance).toFixed(2);
 	} else {
@@ -190,3 +208,5 @@ function generateNewOrder(customer) {
 		
 		document.getElementById(customer.id + "Order").innerHTML = customer.order.name;
 	}
+	
+document.getElementById("startOverButton").onclick = function() {location.reload(true)};

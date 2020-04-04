@@ -25,9 +25,8 @@ button {
 .flex-container {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
-	align-items: stretch;
-	align-content: space-around;
+	justify-content: center;
+	align-content: center;
 	margin: 0em 3em 3em 3em;
 	}
 	
@@ -52,8 +51,12 @@ h1 {
 	}
 
 .item {
-	flex-grow: 1;
-}
+
+	}
+
+li {
+	list-style-type: none;
+	}
 
 #messageBox, #dateBox, #dayTimeBox {
 	text-align: center;
@@ -65,10 +68,18 @@ h1 {
 	color: lightpink;
 	}
 
+#startOverButton {
+	width: 200px;
+	}
+	
 .subtitle {
 	font-style: italic;
 	}
 
+ul {
+	padding: 0;
+	}
+	
 .underlined {
 	text-decoration: underline;
 	}
