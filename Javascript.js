@@ -35,7 +35,7 @@
 
 var goldBalance = 30;
 
-var gameTime = new Date(0, 0);
+var gameTime = new Date(1, 1);
 	gameTime.setHours(6);
 	gameTime.setMinutes(30);
 
@@ -45,6 +45,8 @@ var m = gameTime.getMinutes();
 var clockTime = h + ":" + m;
 
 var gameDay = gameTime.getDate();
+var gameMonth = gameTime.getMonth();
+var gameYear = gameTime.getYear();
 
 var hops = {name: "hops", stock: 0, value: 1.00};
 var yeast = {name: "yeast", stock: 0, value: 1.50};
@@ -66,6 +68,8 @@ document.body.onload = function() {displayVarsToHTML(), advanceTime()};
 function displayVarsToHTML() {
 	document.getElementById("clockBox").innerHTML = clockTime;
 	document.getElementById("dayBox").innerHTML = gameDay;
+	document.getElementById("monthBox").innerHTML = gameMonth;
+	document.getElementById("yearBox").innerHTML = gameYear;
     document.getElementById("customer1Name").innerHTML = customer1.name;
     document.getElementById("customer2Name").innerHTML = customer2.name;
     document.getElementById("customer3Name").innerHTML = customer3.name;
@@ -86,12 +90,16 @@ function displayVarsToHTML() {
 }	
 
 function advanceTime() {
-	gameTime.setMinutes(gameTime.getMinutes() + 10);
+	gameTime.setMinutes(gameTime.getMinutes() + 15);
 	h = fixTime(gameTime.getHours());
 	m = fixTime(gameTime.getMinutes());
-	gameDay = gameTime.getDay();
+	gameMonth = gameTime.getMonth();
+	gameYear = gameTime.getYear();
+	gameDay = gameTime.getDate();
 	document.getElementById("clockBox").innerHTML = h + ":" + m;
 	document.getElementById("dayBox").innerHTML = gameDay;
+	document.getElementById("monthBox").innerHTML = gameMonth;
+	document.getElementById("yearBox").innerHTML = gameYear;
 	setTimeout(advanceTime, 1000);
 } 
 
