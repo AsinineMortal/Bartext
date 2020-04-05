@@ -1,8 +1,9 @@
-var goldBalance = 1700;
+var goldBalance = 500;
 var propertyTax = "Unpaid";
 var propertyTaxAmount = 1500;
 var propertyTaxGracePeriod = 2;
 var firstPropertyTaxMessage = true;
+var firstMonthEver = true;
 
 var gameTime = new Date(1, 1, 1);
 	gameTime.setHours(6);
@@ -88,11 +89,12 @@ if(document.title == "Bartender") {
 
 	function checkForEvent(currentDay) {
 		switch(currentDay) {
-			case 1: propertyTaxDue();
+			case 1: if(firstMonthEver == false) propertyTaxDue();
 				break;
 			
 			case 3:
 				if(propertyTax != "Paid") endGame("propertyTaxUnpaid");
+				firstMonthEver = false;
 				break;
 				
 			case 29: propertyTax = "Unpaid"; firstPropertyTaxMessage = true;
@@ -104,14 +106,18 @@ if(document.title == "Bartender") {
 
 	function checkBusinessHours(gameHour) {
 		switch(gameHour) {
-			case 2: document.getElementById("frontOfBarArea").style.display = "none";
+			case 2:
+				document.getElementById("frontOfBarArea").style.display = "none";
 				document.getElementById("messageBox").innerHTML = "Bar Closed";
 				setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 5000);
 				break;
-			case 11: document.getElementById("frontOfBarArea").style.display = "inline";
+				
+			case 11:
+				document.getElementById("frontOfBarArea").style.display = "inline";
 				document.getElementById("messageBox").innerHTML = "Bar Open";
 				setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 5000);
 				break;
+				
 			default: null;
 		}
 	}
