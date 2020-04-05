@@ -1,9 +1,10 @@
-var goldBalance = 500;
+var goldBalance = 1700;
 var propertyTax = "Unpaid";
 var propertyTaxAmount = 1500;
-var propertyTaxGracePeriod = 3;
+var propertyTaxGracePeriod = 2;
+var firstPropertyTaxMessage = true;
 
-var gameTime = new Date(1, 1, 4);
+var gameTime = new Date(1, 1, 1);
 	gameTime.setHours(6);
 	gameTime.setMinutes(30);
 
@@ -75,6 +76,7 @@ if(document.title == "Bartender") {
 		gameDayOfWeekName = dayName(gameDayOfWeek);
 		
 		checkForEvent(gameDay);
+		checkBusinessHours(gameTime.getHours());
 		
 			document.getElementById("clockBox").innerHTML = h + ":" + m;
 			document.getElementById("dayBox").innerHTML = gameDay;
@@ -90,31 +92,66 @@ if(document.title == "Bartender") {
 				break;
 			
 			case 3:
-				if(propertyTax != "Paid") endGame(propertyTaxEnding);
+				if(propertyTax != "Paid") endGame("propertyTaxUnpaid");
 				break;
 				
-			case 29: propertyTax == "Unpaid";
+			case 29: propertyTax = "Unpaid"; firstPropertyTaxMessage = true;
 				break;
 				
 			default: null;
 		}
 	}
 
+	function checkBusinessHours(gameHour) {
+		switch(gameHour) {
+			case 2: document.getElementById("frontOfBarArea").style.display = "none";
+				document.getElementById("messageBox").innerHTML = "Bar Closed";
+				setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 5000);
+				break;
+			case 11: document.getElementById("frontOfBarArea").style.display = "inline";
+				document.getElementById("messageBox").innerHTML = "Bar Open";
+				setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 5000);
+				break;
+			default: null;
+		}
+	}
+	
 	function propertyTaxDue() {
-		document.getElementById("propertyTaxButton").style.display = "inline";
-		document.getElementById("propertyTaxButton").innerHTML = "Pay Property Tax ($" + propertyTaxAmount + ")";
+		if(firstPropertyTaxMessage == true) {
+			var message = "Property tax due by the 3rd or the bank will seize your bar.";
+			document.getElementById("propertyTaxButton").style.display = "inline";
+			document.getElementById("propertyTaxButton").innerHTML = "Pay Property Tax ($" + propertyTaxAmount + ")";
+			
+			document.getElementById("messageBox").innerHTML = message;
+			setTimeout(function(){document.getElementById("messageBox").innerHTML = "";}, 5000);
+			firstPropertyTaxMessage = false;
+		}
 	}
 
 	document.getElementById("propertyTaxButton").onclick = function() {payPropertyTax()};
 
 	function payPropertyTax() {
-		if(goldBalance >= propertyTaxAmount) {
+		if(goldBalance >= propertyTaxAmount && propertyTax == "Unpaid") {
 			propertyTax = "Paid";
-			goldBalance = goldBalance - propertyTaxAmount;
+			goldBalance -= propertyTaxAmount;
+			document.getElementById("goldBalance").innerHTML = goldBalance;
+			document.getElementById("propertyTaxButton").style.display = "none";
 			} else {
-				var errorMessage = "Sorry, you don't have enough to pay the tax."
+				var errorMessage = "Sorry, you don't have enough to pay the tax.";
 				document.getElementById("messageBox").innerHTML = errorMessage;
 			}
+		
+	}
+	
+	function endGame(endCause) {
+		switch(endCause) {
+			case "propertyTaxUnpaid": {
+				var errorMessage = "You failed to pay your property tax on time and the bank seized your bar. Time to start over."
+				document.getElementById("gameContentArea").innerHTML = "";
+				document.getElementById("messageBox").innerHTML = errorMessage;
+				document.getElementById("propertyTaxButton").style.display = "none";
+			}
+		}
 		
 	}
 
@@ -249,5 +286,4 @@ if(document.title == "Bartender") {
 			document.getElementById(customer.id + "Order").innerHTML = customer.order.name;
 		}
 		
-	// document.getElementById("startOverButton").onclick = function() {location.reload(true)};
 }

@@ -36,6 +36,10 @@ footer {
 	text-align: center;
 	}
 	
+#frontOfBarArea {
+	display: none;
+	}
+	
 .greenDot {
 	color: lightgreen;
 	}
@@ -56,6 +60,7 @@ h1 {
 
 li {
 	list-style-type: none;
+	padding-bottom: 1em;
 	}
 
 #messageBox, #dateBox, #dayTimeBox, #propertyTaxBox {
