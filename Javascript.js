@@ -93,8 +93,10 @@ if(document.title == "Bartender") {
 				break;
 			
 			case 3:
-				if(propertyTax != "Paid") endGame("propertyTaxUnpaid");
-				firstMonthEver = false;
+				if(propertyTax != "Paid" && firstMonthEver == false) endGame("propertyTaxUnpaid");
+				break;
+				
+			case 4: firstMonthEver = false;
 				break;
 				
 			case 29: propertyTax = "Unpaid"; firstPropertyTaxMessage = true;
